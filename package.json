@@ -1,0 +1,25 @@
+{
+  "name": "web-monitor-sdk",
+  "version": "0.0.1",
+  "description": "SDK for web monitor",
+  "author": "Brizer <brizer@163.com>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brizer/web-monitor-sdk.git"
+  },
+  "keywords": [
+    "web",
+    "monitor",
+    "performance",
+    "report"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brizer/web-monitor-sdk/issues"
+  },
+  "homepage": "https://github.com/brizer/web-monitor-sdk#readme"
+}
