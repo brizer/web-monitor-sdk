@@ -1,6 +1,6 @@
 {
   "name": "web-monitor-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "SDK for web monitor",
   "author": "Brizer <brizer@163.com>",
   "main": "dist/web-monitor-sdk.common.js",
@@ -8,7 +8,8 @@
     "build": "npm run build:browser && npm run build:cjs",
     "build:browser": "rollup --config ./build/rollup.config.browser.js",
     "build:cjs": "rollup --config ./build/rollup.config.common.js",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "rollup": "^1.15.1",
     "rollup-plugin-terser": "^5.0.0",
     "rollup-plugin-typescript2": "^0.21.1",
+    "standard-version": "^6.0.1",
     "typescript": "^3.5.1"
   }
 }
