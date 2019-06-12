@@ -9,5 +9,5 @@ const config = Object.assign({},base,{
     }
 })
 
-config.plugins.push(terser())
+config.plugins.unshift(terser())
 export default config
