@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "description": "SDK for web monitor",
   "author": "Brizer <brizer@163.com>",
-  "main": "index.js",
+  "main": "dist/web-monitor-sdk.common.js",
   "scripts": {
+    "build":"npm run build:browser && npm run build:cjs",
+    "build:browser": "rollup --config ./build/rollup.config.browser.js",
+    "build:cjs": "rollup --config ./build/rollup.config.common.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +24,12 @@
   "bugs": {
     "url": "https://github.com/brizer/web-monitor-sdk/issues"
   },
-  "homepage": "https://github.com/brizer/web-monitor-sdk#readme"
+  "typings": "dist/index.d.tx",
+  "homepage": "https://github.com/brizer/web-monitor-sdk#readme",
+  "devDependencies": {
+    "rollup": "^1.15.1",
+    "rollup-plugin-terser": "^5.0.0",
+    "rollup-plugin-typescript2": "^0.21.1",
+    "typescript": "^3.5.1"
+  }
 }

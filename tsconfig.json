@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "outDir": "dist",
+        "sourceMap": false,
+        "lib":["es2015","es6","es7","dom"],
+        "module": "es6"
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}
