@@ -1,3 +1,3 @@
-export { init } from './sdk'
+export { init, close } from './sdk'
 export { hub } from './util/hub'
 

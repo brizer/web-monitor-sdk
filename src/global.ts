@@ -2,17 +2,17 @@ import { hub, EventBus } from "./util/hub";
 import { logger } from "./util/logger";
 
 interface ErrorDefo {
-    t:number;
-    n:string;
-    msg:string;
-    data:any
+    t: number;
+    n: string;
+    msg: string;
+    data: any
 }
 
 
 export class Global {
     private isActive = true;
     private oldErrorHandler: any;
-    private errordefo:ErrorDefo = {
+    private errordefo: ErrorDefo = {
         t: 0,
         n: 'js',
         msg: '',
@@ -34,12 +34,17 @@ export class Global {
     private installGlobalErrorHandle(): void {
         this.oldErrorHandler = window.onerror;
 
-        window.onerror =this.trackWindowOnError.bind(this)
+        // window.onerror =this.trackWindowOnError.bind(this)
+        window.onerror = this.trackWindowOnError.bind(this)
     }
 
     private trackWindowOnError(msg: any, url: any, lineNo: any, col: any, error: any) {
+        if (this.isActive === false) {
+            logger.log(`Global get error, but do nothing`)
+            return;
+        }
         logger.log(`Global get error`)
-        if(this.isActive === false){return}
+
         let defaults = Object.assign({}, this.errordefo);
         setTimeout(function () {
             col = col || window.event || 0;
@@ -51,11 +56,11 @@ export class Global {
             };
             defaults.t = new Date().getTime();
             logger.log(`Global track error info: ${JSON.stringify(defaults)}`)
-            hub.emit(EventBus.CATCH_ERROR,defaults)
+            hub.emit(EventBus.CATCH_ERROR, defaults)
         }, 0);
         //do not overwrite the original exception
-        if(this.oldErrorHandler){
-            return this.oldErrorHandler.apply(this,arguments)
+        if (this.oldErrorHandler) {
+            return this.oldErrorHandler.apply(this, arguments)
         }
     }
 

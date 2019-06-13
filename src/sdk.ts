@@ -1,6 +1,7 @@
 import { Options } from "./types/options";
 import { logger } from "./util/logger";
 import { Global } from "./global";
+import { hub, EventBus } from "./util/hub";
 
 const defaultOption:Options = {
     debug: false,
@@ -27,4 +28,11 @@ export const init = (options: Options) => {
     if(options.sendError === true){
         globalIns = new Global()
     }
+}
+/**
+ * Close sdk, set the active status to false
+ */
+export const close = () =>{
+    logger.log('close sdk')
+    hub.emit(EventBus.CHANGE_ACTIVE,false)
 }
