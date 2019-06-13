@@ -4,3 +4,4 @@ export const hehe:number=2
 
 logger.enable()
 logger.warn('hehe')
+
