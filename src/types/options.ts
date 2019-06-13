@@ -50,6 +50,11 @@ export interface Options {
     sendResource?: boolean;
 
     /**
+     * Whether to report error .
+     * Defaults to true.
+     */
+    sendError?: boolean;
+    /**
      * Whether to report ajax performance data.
      * Defaults to true.
      */
