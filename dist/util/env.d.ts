@@ -1,6 +1,5 @@
 interface WebMonitorGlobal {
     __WebMonitor__: {
-        globalEventProcessors?: any;
         logger?: any;
     };
 }

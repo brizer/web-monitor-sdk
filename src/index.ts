@@ -1,6 +1,5 @@
 import { logger } from './util/logger'
-
-export const hehe:number=2
+import { getGlobalObject } from './util/env'
 
 logger.enable()
 logger.warn('hehe')
