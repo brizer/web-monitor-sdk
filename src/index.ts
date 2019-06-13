@@ -1,6 +1,4 @@
-import { logger } from './util/logger'
+export { init } from './sdk'
+export { hub } from './util/hub'
 
-export const hehe:number=2
 
-logger.enable()
-logger.warn('hehe')

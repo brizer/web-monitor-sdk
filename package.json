@@ -6,10 +6,12 @@
   "main": "dist/web-monitor-sdk.common.js",
   "scripts": {
     "dev:browser": "rollup --config ./build/rollup.config.browser.js --watch",
+    "dev:cjs": "rollup --config ./build/rollup.connfig.common.js --watch",
     "build": "npm run build:browser && npm run build:cjs",
     "build:browser": "rollup --config ./build/rollup.config.browser.js",
     "build:cjs": "rollup --config ./build/rollup.config.common.js",
     "demo:browser": "http-server",
+    "demo:cjs": "cd examples/common && webpack-dev-server",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
     "release": "standard-version"
   },
@@ -44,6 +46,9 @@
     "rollup-plugin-terser": "^5.0.0",
     "rollup-plugin-typescript2": "^0.21.1",
     "standard-version": "^6.0.1",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.1",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
   }
 }

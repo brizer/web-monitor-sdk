@@ -1,5 +1,5 @@
 /**
- * Copyright web-monitor-sdk 0.0.2 (eb1a876) | https://github.com/brizer/web-monitor-sdk
+ * Copyright web-monitor-sdk 0.0.2 (98b6f00) | https://github.com/brizer/web-monitor-sdk
  */
 
 'use strict';
@@ -83,6 +83,8 @@ var logger = global$1.__WebMonitor__.logger || (global$1.__WebMonitor__.logger =
 
 var hehe = 2;
 logger.enable();
-logger.error('hehe');
+logger.warn('hehe');
+var logger2 = logger;
 
 exports.hehe = hehe;
+exports.logger2 = logger2;
