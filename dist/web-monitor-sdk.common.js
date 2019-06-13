@@ -1,5 +1,5 @@
 /**
- * Copyright web-monitor-sdk 0.0.2 (be78925) | https://github.com/brizer/web-monitor-sdk
+ * Copyright web-monitor-sdk 0.0.2 (eb1a876) | https://github.com/brizer/web-monitor-sdk
  */
 
 'use strict';
@@ -32,6 +32,9 @@ var getGlobalObject = function () {
 
 var global$1 = getGlobalObject();
 var PREFIX = 'Web Monitor Logger ';
+/**
+ * Logger
+ */
 var Logger = /** @class */ (function () {
     function Logger() {
         this.enabled = false;
@@ -79,6 +82,7 @@ global$1.__WebMonitor__ = global$1.__WebMonitor__ || {};
 var logger = global$1.__WebMonitor__.logger || (global$1.__WebMonitor__.logger = new Logger());
 
 var hehe = 2;
-logger.warn('hehe');
+logger.enable();
+logger.error('hehe');
 
 exports.hehe = hehe;
