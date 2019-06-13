@@ -2,7 +2,6 @@ window.onerror = () => {
   console.warn("old error");
 };
 
-window.WebMonitorSDK.init({ debug: true });
 
 /**
  * test hub
@@ -58,3 +57,17 @@ window.WebMonitorSDK.init({ debug: true });
 /**
  * test img load
  */
+
+ //************************ */
+ /**
+  * test page performance
+  */
+
+  window.WebMonitorSDK.hub.on('GET_PERFORMANCE',(data)=>{
+      console.warn(data)
+  })
+
+
+
+
+window.WebMonitorSDK.init({ debug: true });

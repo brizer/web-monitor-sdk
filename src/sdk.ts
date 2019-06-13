@@ -2,6 +2,7 @@ import { Options } from "./types/options";
 import { logger } from "./util/logger";
 import { Global } from "./global";
 import { hub, EventBus } from "./util/hub";
+import { Page } from "./page";
 
 const defaultOption:Options = {
     debug: false,
@@ -19,6 +20,7 @@ const defaultOption:Options = {
 }
 
 let globalIns:Global
+let pageIns: Page
 
 export const init = (options: Options) => {
     //merge default options
@@ -33,6 +35,9 @@ export const init = (options: Options) => {
             sendUnhandledRejection:options.sendUnhandledRejection,
             sendUnloadError:options.sendUnloadError
         })
+    }
+    if(options.sendPage === true){
+        pageIns = new Page()
     }
 }
 /**

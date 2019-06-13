@@ -5,7 +5,8 @@ const global = getGlobalObject<Window | NodeJS.Global>();
 export enum EventBus {
     ERROR = 'ERROR',
     CHANGE_ACTIVE = 'CHANGE_ACTIVE',
-    CATCH_ERROR = 'CATEH_ERROR'
+    CATCH_ERROR = 'CATEH_ERROR',
+    GET_PERFORMANCE = 'GET_PERFORMANCE'
 }
 
 
