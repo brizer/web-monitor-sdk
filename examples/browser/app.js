@@ -24,9 +24,9 @@ window.WebMonitorSDK.init({ debug: true });
 /**
  * test window.onerror catch
  */
-window.WebMonitorSDK.hub.on("CATEH_ERROR", data => {
-  console.warn(data);
-});
+// window.WebMonitorSDK.hub.on("CATEH_ERROR", data => {
+//   console.warn(data);
+// });
 
 // notcatcherror
 
