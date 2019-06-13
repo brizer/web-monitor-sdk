@@ -14,7 +14,8 @@ const defaultOption:Options = {
     sendAjax: true,
     sendResource: true,
     sendError: true,
-    sendUnhandledRejection: true
+    sendUnhandledRejection: true,
+    sendUnloadError:true
 }
 
 let globalIns:Global
@@ -29,7 +30,8 @@ export const init = (options: Options) => {
     if(options.sendError === true){
         globalIns = new Global({
             sendError:options.sendError,
-            sendUnhandledRejection:options.sendUnhandledRejection
+            sendUnhandledRejection:options.sendUnhandledRejection,
+            sendUnloadError:options.sendUnloadError
         })
     }
 }

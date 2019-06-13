@@ -59,6 +59,13 @@ export interface Options {
      * Defaults to true.
      */
     sendUnhandledRejection?:boolean;
+    
+    /**
+     * Whether to report unload error.
+     * Defaults to true.
+     */
+    sendUnloadError?:boolean;
+
     /**
      * Whether to report ajax performance data.
      * Defaults to true.

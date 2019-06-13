@@ -1,7 +1,6 @@
-
-window.onerror = ()=>{
-    console.warn('old error')
-}
+window.onerror = () => {
+  console.warn("old error");
+};
 
 window.WebMonitorSDK.init({ debug: true });
 
@@ -25,13 +24,13 @@ window.WebMonitorSDK.init({ debug: true });
 /**
  * test window.onerror catch
  */
-window.WebMonitorSDK.hub.on('CATEH_ERROR',(data)=>{
-    console.warn(data)
-})
+window.WebMonitorSDK.hub.on("CATEH_ERROR", data => {
+  console.warn(data);
+});
 
 // notcatcherror
 
-
+//*************************** */
 /**
  * catched error not show in sdk
  */
@@ -44,13 +43,18 @@ window.WebMonitorSDK.hub.on('CATEH_ERROR',(data)=>{
 //     notcatcherrorsetimoeout
 // },2000)
 
+//************************ */
+
 /**
  * test unhandledrejection error by promise
  */
-setTimeout(() => {
-    Promise.reject(new Error('unhandledrejection'))
-  }, 1000)
-
-  
+// setTimeout(() => {
+//     Promise.reject(new Error('unhandledrejection'))
+//   }, 1000)
 
 
+//**************************** */
+
+/**
+ * test img load
+ */

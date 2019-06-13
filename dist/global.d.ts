@@ -1,6 +1,7 @@
 interface GlobalOptions {
     sendError: boolean;
     sendUnhandledRejection: boolean;
+    sendUnloadError: boolean;
 }
 export declare class Global {
     private isActive;
@@ -10,6 +11,14 @@ export declare class Global {
     constructor(options: GlobalOptions);
     private init;
     private installGlobalErrorHandle;
+    /**
+     * Catch normal no catched error
+     * @param msg
+     * @param url
+     * @param lineNo
+     * @param col
+     * @param error
+     */
     private trackWindowOnError;
     /**
      * Track unhandleRejectionError
@@ -18,5 +27,10 @@ export declare class Global {
      * @param err
      */
     private trackUnhandledRejectionError;
+    /**
+     * Catch img css unload error
+     * @param err
+     */
+    private trackUnloadError;
 }
 export {};
