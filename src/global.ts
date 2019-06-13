@@ -8,17 +8,26 @@ interface ErrorDefo {
     data: any
 }
 
+interface GlobalOptions {
+    sendError: boolean;
+    sendUnhandledRejection: boolean;
+}
+
 
 export class Global {
     private isActive = true;
     private oldErrorHandler: any;
+    private options: GlobalOptions;
     private errordefo: ErrorDefo = {
         t: 0,
         n: 'js',
         msg: '',
         data: {}
     }
-    constructor() {
+    constructor(options: GlobalOptions) {
+        this.options = {
+            ...options
+        }
         this.init()
     }
 
@@ -33,9 +42,12 @@ export class Global {
 
     private installGlobalErrorHandle(): void {
         this.oldErrorHandler = window.onerror;
-
-        // window.onerror =this.trackWindowOnError.bind(this)
-        window.onerror = this.trackWindowOnError.bind(this)
+        if (this.options.sendError === true) {
+            window.onerror = this.trackWindowOnError.bind(this)
+        }
+        if (this.options.sendUnhandledRejection === true) {
+            window.addEventListener('unhandledrejection', this.trackUnhandledRejectionError.bind(this))
+        }
     }
 
     private trackWindowOnError(msg: any, url: any, lineNo: any, col: any, error: any) {
@@ -62,6 +74,36 @@ export class Global {
         if (this.oldErrorHandler) {
             return this.oldErrorHandler.apply(this, arguments)
         }
+    }
+    /**
+     * Track unhandleRejectionError
+     * 
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onunhandledrejection
+     * @param err 
+     */
+    private trackUnhandledRejectionError(err: PromiseRejectionEvent) {
+        if (this.isActive === false) {
+            logger.log(`Global get error, but do nothing`)
+            return;
+        }
+        logger.log(`Global get error`)
+
+        const error = err && err.reason
+        const message = error.message || '';
+        const stack = error.stack || '';
+        // Processing error
+        let resourceUrl:string;
+        stack.replace(/.?(\S+\.[js|html]+)/g, ($1,$2) => { resourceUrl = $2; return ''; })
+        let defaults = Object.assign({}, this.errordefo);
+        defaults.msg = message;
+        defaults.t = new Date().getTime();
+        defaults.data = {
+            resourceUrl: resourceUrl,
+            stack:stack
+        };
+        logger.log(`Global track error info: ${JSON.stringify(defaults)}`)
+
+        hub.emit(EventBus.CATCH_ERROR, defaults)
     }
 
 }

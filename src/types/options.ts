@@ -55,6 +55,11 @@ export interface Options {
      */
     sendError?: boolean;
     /**
+     * Whether to report unhandledrejection error in promise in Chrome 49+.
+     * Defaults to true.
+     */
+    sendUnhandledRejection?:boolean;
+    /**
      * Whether to report ajax performance data.
      * Defaults to true.
      */

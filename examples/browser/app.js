@@ -1,3 +1,4 @@
+
 window.onerror = ()=>{
     console.warn('old error')
 }
@@ -27,16 +28,29 @@ window.WebMonitorSDK.init({ debug: true });
 window.WebMonitorSDK.hub.on('CATEH_ERROR',(data)=>{
     console.warn(data)
 })
-try{
-catcherror
-}catch(err){
-}
 
-setTimeout(()=>{
-    notcatcherrorsetimoeout
-},2000)
+// notcatcherror
 
 
-notcatcherror
+/**
+ * catched error not show in sdk
+ */
+// try{
+// catcherror
+// }catch(err){
+// }
+
+// setTimeout(()=>{
+//     notcatcherrorsetimoeout
+// },2000)
+
+/**
+ * test unhandledrejection error by promise
+ */
+setTimeout(() => {
+    Promise.reject(new Error('unhandledrejection'))
+  }, 1000)
+
+  
 
 

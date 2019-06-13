@@ -23,7 +23,7 @@ export interface Options {
      * A pattern for Ajax URLs which should not be report.
      * By default, all Ajax will be sent.
      */
-    boacklistAjaxUrls?: Array<string | RegExp>;
+    blacklistAjaxUrls?: Array<string | RegExp>;
     /**
      * Delay time to report, ensure the loading of asynchronous data.
      * The unit is milliseconds
@@ -40,6 +40,16 @@ export interface Options {
      * Defaults to true.
      */
     sendResource?: boolean;
+    /**
+     * Whether to report error .
+     * Defaults to true.
+     */
+    sendError?: boolean;
+    /**
+     * Whether to report unhandledrejection error in promise in Chrome 49+.
+     * Defaults to true.
+     */
+    sendUnhandledRejection?: boolean;
     /**
      * Whether to report ajax performance data.
      * Defaults to true.

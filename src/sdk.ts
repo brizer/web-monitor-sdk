@@ -13,7 +13,8 @@ const defaultOption:Options = {
     sendPage: true,
     sendAjax: true,
     sendResource: true,
-    sendError: true
+    sendError: true,
+    sendUnhandledRejection: true
 }
 
 let globalIns:Global
@@ -26,7 +27,10 @@ export const init = (options: Options) => {
     }
     logger.log('start logging...')
     if(options.sendError === true){
-        globalIns = new Global()
+        globalIns = new Global({
+            sendError:options.sendError,
+            sendUnhandledRejection:options.sendUnhandledRejection
+        })
     }
 }
 /**
