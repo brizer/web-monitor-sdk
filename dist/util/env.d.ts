@@ -1,5 +1,6 @@
 interface WebMonitorGlobal {
     __WebMonitor__: {
+        hub?: any;
         logger?: any;
     };
 }
