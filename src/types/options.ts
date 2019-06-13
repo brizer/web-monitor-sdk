@@ -28,7 +28,7 @@ export interface Options {
      * A pattern for Ajax URLs which should not be report.
      * By default, all Ajax will be sent.
      */
-    boacklistAjaxUrls?: Array<string | RegExp>
+    blacklistAjaxUrls?: Array<string | RegExp>
 
     /**
      * Delay time to report, ensure the loading of asynchronous data.
