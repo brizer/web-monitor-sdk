@@ -2,7 +2,6 @@ window.onerror = () => {
   console.warn("old error");
 };
 
-
 /**
  * test hub
  */
@@ -51,23 +50,27 @@ window.onerror = () => {
 //     Promise.reject(new Error('unhandledrejection'))
 //   }, 1000)
 
-
 //**************************** */
 
 /**
  * test img load
  */
 
- //************************ */
- /**
-  * test page performance
-  */
+//************************ */
+/**
+ * test page performance
+ */
 
-  window.WebMonitorSDK.hub.on('GET_PERFORMANCE',(data)=>{
-      console.warn(data)
-  })
+window.WebMonitorSDK.hub.on("GET_PERFORMANCE", data => {
+  console.warn(data);
+});
 
-
-
-
-window.WebMonitorSDK.init({ debug: true });
+window.WebMonitorSDK.init({ 
+    debug: true
+ },(data)=>{
+     fetch('http://demo/api',{
+        method:'POST',
+         headers: {'Content-Type': 'application/json'},
+         body:JSON.stringify(data)
+     })
+ });

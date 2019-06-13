@@ -1,12 +1,8 @@
 import { hub, EventBus } from "./util/hub";
 import { logger } from "./util/logger";
+import { ErrorDefo } from "./types/error";
 
-interface ErrorDefo {
-    t: number;
-    n: string;
-    msg: string;
-    data: any
-}
+
 
 interface GlobalOptions {
     sendError: boolean;
