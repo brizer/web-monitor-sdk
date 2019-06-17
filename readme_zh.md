@@ -146,6 +146,9 @@ WebMonitor.init(Options,fn)
 * Github: [@brizer](https://github.com/brizer)
 * 知乎: [@brizer](https://www.zhihu.com/people/liu-fang-88-94/activities)
 
+## [更新日志](./CHANGELOG.md)
+
+
 ## 🤝 贡献
 
 Contributions, issues 和 feature 都欢迎<br />Feel free to check [issues page](https://github.com/brizer/web-monitor-sdk/issues).

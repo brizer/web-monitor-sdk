@@ -148,6 +148,9 @@ Additional data, to send to server together.
 * Github: [@brizer](https://github.com/brizer)
 * Zhihu: [@brizer](https://www.zhihu.com/people/liu-fang-88-94/activities)
 
+## [ChangeLog](./CHANGELOG.md)
+
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/brizer/web-monitor-sdk/issues).
