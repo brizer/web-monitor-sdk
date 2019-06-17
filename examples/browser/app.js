@@ -66,7 +66,17 @@ window.WebMonitorSDK.hub.on("GET_PERFORMANCE", data => {
 });
 
 window.WebMonitorSDK.init({ 
-    debug: true
+    debug: true,
+    sendError: false,
+    outtime:3000,
+    blacklistUrls:[
+      // 'localhost:8080/examples'
+    ],
+    data:{
+      webUser:{
+        id:12345
+      }
+    }
  },(data)=>{
      fetch('http://demo/api',{
         method:'POST',

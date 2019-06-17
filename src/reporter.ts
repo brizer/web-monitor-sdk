@@ -81,6 +81,7 @@ export class Reporter {
             return;
         }
         let response = Object.assign({}, this.reportData, this.options.data)
+        logger.log(`Report info is ${JSON.stringify(response)}`)
         this.options.fn(response)
     }
 
