@@ -1,4 +1,13 @@
-import { hehe, logger2 } from '../../dist/web-monitor-sdk.common'
+import * as webMonitor from 'web-monitor-sdk'
 
-console.log(hehe)
-logger2.warn('123')
+webMonitor.init({
+    debug:true,
+    sendError: false,
+    outtime:2000
+},data=>{
+    fetch('http://demo/api',{
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify(data)  
+    })
+})

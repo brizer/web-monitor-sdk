@@ -1,6 +1,6 @@
 {
   "name": "web-monitor-sdk",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "SDK for web monitor",
   "author": "Brizer <brizer@163.com>",
   "main": "dist/web-monitor-sdk.common.js",
