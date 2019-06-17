@@ -1,7 +1,7 @@
 {
   "name": "web-monitor-sdk",
   "version": "1.0.0",
-  "description": "SDK for web monitor",
+  "description": "SDK for web monitor, a simple web data collection tool for performance, exceptions, etc.",
   "author": "Brizer <brizer@163.com>",
   "main": "dist/web-monitor-sdk.common.js",
   "scripts": {
