@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to web-monitor-sdk 👋</h1>
+<h1 align="center">web-monitor-sdk 👋</h1>
 <p>
   <img src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/brizer/web-monitor-sdk#readme">
@@ -15,6 +15,8 @@
 > SDK for web monitor, a simple web data collection tool for performance, exceptions, etc.
 
 ### 🏠 [Homepage](https://github.com/brizer/web-monitor-sdk#readme)
+
+[中文文档](./readme_zh.md)
 
 ## Install
 
@@ -76,52 +78,64 @@ webMonitor.init({
 })
 ```
 
-## Options
+## API
 
-### `debug` 
+``` js
+WebMonitor.init(Options,fn)
+```
+
+### fn
+> Function
+
+Callback function after data collection. We only collect data, not responsible for reporting data, so you need to assemble the logic of reporting data ourselves.
+
+
+### Options
+
+#### `debug` 
 
 Enable debug funtionality such as Logger, in the SDK.
  
-(Defaults to false, not required)
+(Defaults to false)
 
-### `blacklistUrls`
+#### `blacklistUrls`
 > Array<string | RegExp>
 
 A pattern for URLs which should not be report. 
 (By default, all urls will be sent)
 
-### `outtime`
+#### `outtime`
 > number
 
 Delay time to report, ensure the loading of asynchronous data.
 The unit is milliseconds.
 (Defaults to 1000)
 
-### `sendPage`
+#### `sendPage`
 > boolean
 
 Whether to report page performance data.
 (Defaults to true)
 
-### `sendError`
+#### `sendError`
 > boolean
 
 Whether to report error.
 (Defaults to true)
 
-### `sendUnhandledRejection`
+#### `sendUnhandledRejection`
 > boolean
 
 Whether to report unhandledrejection error in promise in Chrome 49+.
 (Defaults to true)
 
-### `sendUnloadError`
+#### `sendUnloadError`
 > boolean 
 
 Whether to report unload error.
 (Defaults to true)
 
-### `data`
+#### `data`
 > object
 
 Additional data, to send to server together.
