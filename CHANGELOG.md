@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/brizer/web-monitor-sdk/compare/v1.1.0...v1.2.0) (2019-06-18)
+
+
+### Features
+
+* support client info report ([2ec41ac](https://github.com/brizer/web-monitor-sdk/commit/2ec41ac))
+
+
+
 ## [1.1.0](https://github.com/brizer/web-monitor-sdk/compare/v0.0.2...v1.1.0) (2019-06-17)
 
 
