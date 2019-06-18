@@ -1,5 +1,5 @@
 /**
- * Copyright web-monitor-sdk 1.0.0 (32b371d) | https://github.com/brizer/web-monitor-sdk
+ * Copyright web-monitor-sdk 1.1.0 (7ec2221) | https://github.com/brizer/web-monitor-sdk
  */
 
 'use strict';
@@ -114,6 +114,7 @@ var EventBus;
     EventBus["CHANGE_ACTIVE"] = "CHANGE_ACTIVE";
     EventBus["CATCH_ERROR"] = "CATEH_ERROR";
     EventBus["GET_PERFORMANCE"] = "GET_PERFORMANCE";
+    EventBus["GET_CLIENT"] = "GET_CLIENT";
 })(EventBus || (EventBus = {}));
 var Hub = /** @class */ (function () {
     function Hub() {
@@ -339,10 +340,9 @@ var Reporter = /** @class */ (function () {
         this.reportData = {
             url: location.href,
             time: new Date().getTime(),
-            screenWidth: document.documentElement.clientWidth || document.body.clientWidth,
-            screenHeight: document.documentElement.clientHeight || document.body.clientHeight,
             errorList: [],
-            performance: {}
+            performance: {},
+            clientInfo: {}
         };
         this.init();
     }
@@ -366,6 +366,7 @@ var Reporter = /** @class */ (function () {
         });
         hub.on(EventBus.CATCH_ERROR, this.assembleErrorData.bind(this));
         hub.on(EventBus.GET_PERFORMANCE, this.assemblePerformanceData.bind(this));
+        hub.on(EventBus.GET_CLIENT, this.assembleClientData.bind(this));
         setTimeout(this.reportToServer.bind(this), this.options.outtime);
     };
     Reporter.prototype.assembleErrorData = function (errorData) {
@@ -373,6 +374,9 @@ var Reporter = /** @class */ (function () {
     };
     Reporter.prototype.assemblePerformanceData = function (performanceData) {
         this.reportData.performance = performanceData;
+    };
+    Reporter.prototype.assembleClientData = function (clientData) {
+        this.reportData.clientInfo = clientData;
     };
     Reporter.prototype.reportToServer = function () {
         if (!this.isActive) {
@@ -392,6 +396,41 @@ var Reporter = /** @class */ (function () {
     return Reporter;
 }());
 
+var Client = /** @class */ (function () {
+    function Client() {
+        this.isActive = true;
+        this.init();
+    }
+    Client.prototype.init = function () {
+        var _this = this;
+        //listen active status
+        hub.on(EventBus.CHANGE_ACTIVE, function (activeStatus) {
+            logger.log("Client accepted " + EventBus.CHANGE_ACTIVE + ": " + activeStatus);
+            _this.isActive = activeStatus;
+        });
+        window.addEventListener('load', function () {
+            if (_this.isActive === false) {
+                return;
+            }
+            var clientInfo = _this.getClientInfo();
+            logger.log("Client get info: " + JSON.stringify(clientInfo));
+            hub.emit(EventBus.GET_CLIENT, clientInfo);
+        });
+    };
+    Client.prototype.getClientInfo = function () {
+        if (!window.navigator)
+            return;
+        var clientInfo = {
+            ua: window.navigator.userAgent,
+            resolution: window.screen.width + "*" + window.screen.height,
+            screenSize: (document.documentElement.clientWidth || document.body.clientWidth) + "*" + (document.documentElement.clientHeight || document.body.clientHeight),
+            dpr: window.devicePixelRatio
+        };
+        return clientInfo;
+    };
+    return Client;
+}());
+
 var defaultOption = {
     debug: false,
     blacklistUrls: [],
@@ -400,6 +439,7 @@ var defaultOption = {
     sendError: true,
     sendUnhandledRejection: true,
     sendUnloadError: true,
+    sendClientInfo: true,
     data: undefined
 };
 var globalIns;
@@ -421,6 +461,9 @@ var init = function (options, fn) {
     }
     if (options.sendPage === true) {
         pageIns = new Page();
+    }
+    if (options.sendClientInfo === true) {
+        new Client();
     }
     if (fn) {
         reporterIns = new Reporter({

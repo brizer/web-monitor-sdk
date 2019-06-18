@@ -135,6 +135,13 @@ Whether to report unhandledrejection error in promise in Chrome 49+.
 Whether to report unload error.
 (Defaults to true)
 
+
+#### `sendClientInfo`
+> boolean 
+
+Whether to report client info such as user agent and resolution.
+(Defaults to true)
+
 #### `data`
 > object
 

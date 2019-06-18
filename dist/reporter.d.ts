@@ -18,6 +18,7 @@ export declare class Reporter {
     private init;
     private assembleErrorData;
     private assemblePerformanceData;
+    private assembleClientData;
     private reportToServer;
 }
 export {};

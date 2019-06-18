@@ -4,6 +4,7 @@ import { Global } from "./global";
 import { hub, EventBus } from "./util/hub";
 import { Page } from "./page";
 import { Reporter } from "./reporter";
+import { Client } from "./client";
 
 const defaultOption:Options = {
     debug: false,
@@ -13,6 +14,7 @@ const defaultOption:Options = {
     sendError: true,
     sendUnhandledRejection: true,
     sendUnloadError:true,
+    sendClientInfo:true,
     data:undefined
 }
 
@@ -36,6 +38,10 @@ export const init = (options: Options, fn: Function) => {
     }
     if(options.sendPage === true){
         pageIns = new Page()
+    }
+
+    if(options.sendClientInfo === true){
+        new Client()
     }
     if(fn){
         reporterIns = new Reporter({

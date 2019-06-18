@@ -30,6 +30,10 @@
     "performance",
     "report"
   ],
+  "files": [
+    "src",
+    "dist"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/brizer/web-monitor-sdk/issues"

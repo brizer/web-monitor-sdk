@@ -133,6 +133,13 @@ WebMonitor.init(Options,fn)
 是否上报加载资源失败的错误
 （默认是true）
 
+#### `sendClientInfo`
+> boolean 
+
+是否上报客户端信息如UA和分辨率
+（默认是true）
+
+
 #### `data`
 > object
 

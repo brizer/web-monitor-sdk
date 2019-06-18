@@ -3,6 +3,7 @@ import { logger } from "./util/logger";
 import { ErrorDefo } from "./types/error";
 import { PerformanceModel } from "./types/performance";
 import { isMatchingPattern } from "./util/string";
+import { ClientModel } from "./types/client";
 
 interface ReporterOptions {
     fn?: Function;
@@ -14,10 +15,9 @@ interface ReporterOptions {
 interface reportModel {
     errorList: Array<ErrorDefo>,
     performance: PerformanceModel | {},
+    clientInfo: ClientModel | {},
     url: string,
-    time: number,
-    screenWidth: number,
-    screenHeight: number
+    time: number
 }
 
 export class Reporter {
@@ -32,10 +32,9 @@ export class Reporter {
         this.reportData = {
             url:location.href,
             time:new Date().getTime(),
-            screenWidth: document.documentElement.clientWidth || document.body.clientWidth,
-            screenHeight: document.documentElement.clientHeight || document.body.clientHeight,
             errorList : [],
-            performance : {}
+            performance : {},
+            clientInfo: {}
         }
         this.init()
     }
@@ -59,6 +58,7 @@ export class Reporter {
         })
         hub.on(EventBus.CATCH_ERROR, this.assembleErrorData.bind(this))
         hub.on(EventBus.GET_PERFORMANCE, this.assemblePerformanceData.bind(this))
+        hub.on(EventBus.GET_CLIENT, this.assembleClientData.bind(this))
 
         setTimeout(this.reportToServer.bind(this), this.options.outtime)
     }
@@ -68,6 +68,10 @@ export class Reporter {
     }
     private assemblePerformanceData(performanceData: PerformanceModel): void {
         this.reportData.performance = performanceData;
+    }
+
+    private assembleClientData(clientData: ClientModel):void {
+        this.reportData.clientInfo = clientData;
     }
 
     private reportToServer(): void {

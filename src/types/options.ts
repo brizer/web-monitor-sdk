@@ -42,6 +42,12 @@ export interface Options {
     sendUnloadError?:boolean;
 
     /**
+     * Whether to report client info
+     * Defauts to true.
+     */
+    sendClientInfo?:boolean;
+
+    /**
      * Additional data, to send to server together
      * 
      * Default is undefined
